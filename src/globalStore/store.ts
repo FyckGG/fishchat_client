@@ -26,7 +26,6 @@ class Store {
 
   async checkAuth() {
     try {
-      //this.setIsloading(true);
       const is_auth_response: KyResponse = await ky.get(
         `${import.meta.env.VITE_REACT_APP_API_URL}/user/refresh`,
         {
@@ -37,7 +36,6 @@ class Store {
       localStorage.setItem("token", json_is_auth_response.acces_token);
       this.setAuth(true);
       this.setUser(json_is_auth_response.user);
-      console.log(json_is_auth_response);
     } catch (e) {
       console.log(e);
     } finally {
