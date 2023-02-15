@@ -1,0 +1,15 @@
+.greeting_text {
+  /* position: absolute; */
+  width: 725px;
+  height: 408px;
+  left: 161px;
+  top: 275px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 112px;
+  line-height: 136px;
+
+  color: #99e6fa;
+}

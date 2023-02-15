@@ -1,0 +1,11 @@
+.tooltip {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  visibility: hidden;
+  padding: 5px;
+  border-radius: 5px;
+  /* margin-left: 20rem;
+  margin-top: -2.5rem; */
+  /* z-index: 3; */
+}

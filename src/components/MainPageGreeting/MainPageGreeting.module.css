@@ -1,0 +1,7 @@
+.greeting > * {
+  padding: 10px;
+}
+
+.greeting_buttons {
+  display: inline;
+}

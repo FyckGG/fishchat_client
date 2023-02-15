@@ -1,0 +1,46 @@
+.fillform input[type="text"] {
+  font-size: 1em;
+  border-radius: 5px;
+  margin-left: 0.5em;
+  text-align: center;
+}
+
+.fillform input[type="password"] {
+  font-size: 1em;
+  border-radius: 5px;
+  margin-left: 0.5em;
+  text-align: center;
+}
+
+.fillform input[type="submit"] {
+  display: inline;
+  background: linear-gradient(265.65deg, #acebfb 0%, #85e1f9 100%);
+  box-shadow: inset -8px -8px 16px #87b8c4,
+    inset 8px 8px 16px rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  font-size: 1em;
+  margin-top: 1em;
+  padding: 0.5em;
+}
+
+.fillform input[type="submit"]:hover {
+  cursor: pointer;
+  background-color: #727373;
+
+  -webkit-box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+
+  -moz-box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+}
+
+.fillform input[type="submit"]:disabled {
+  pointer-events: none;
+  background: linear-gradient(265.65deg, #727373 0%, #727373 100%);
+  box-shadow: inset -8px -8px 16px #727373,
+    inset 8px 8px 16px rgba(255, 255, 255, 0.5);
+}
+
+.fillform {
+  display: block;
+}

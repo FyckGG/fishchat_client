@@ -1,0 +1,6 @@
+.button_1 {
+  background: linear-gradient(265.65deg, #acebfb 0%, #85e1f9 100%);
+  box-shadow: inset -8px -8px 16px #87b8c4,
+    inset 8px 8px 16px rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+}
