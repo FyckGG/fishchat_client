@@ -1,6 +1,6 @@
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
-import ClipLoader_1 from "../../ui/ClipLoader_1/ClipLoader_1";
+import ClipLoader from "react-spinners/ClipLoader";
 import FillForm from "../../components/FillForm/FillForm";
 import Tooltip_1 from "../../ui/Tooltip_1/Tooltip_1";
 import validateEmail from "./helpers/validateEmail";
@@ -133,7 +133,7 @@ const SignForm = () => {
         <label>
           {isSendingData ? (
             <div className={styles.loader}>
-              <ClipLoader_1 />
+              <ClipLoader color="#85e1f9" />
             </div>
           ) : (
             <div>

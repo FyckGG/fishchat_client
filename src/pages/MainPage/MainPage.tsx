@@ -1,5 +1,5 @@
 import React from "react";
-import { MainPageInteractions } from "../../modules/MainPageInteractions/MainPageInteractions";
+import MainPageInteractions from "../../modules/MainPageInteractions";
 import styles from "./MainPage.module.css";
 
 export const MainPage = () => {

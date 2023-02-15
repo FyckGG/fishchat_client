@@ -3,7 +3,7 @@ import authorization from "./api/authorization";
 import { succesNotify } from "../../globalFunctions/succesNotify";
 import { errorNotify } from "../../globalFunctions/erorrNotify";
 import FillForm from "../../components/FillForm/FillForm";
-import ClipLoader_1 from "../../ui/ClipLoader_1/ClipLoader_1";
+import { ClipLoader } from "react-spinners";
 import { Context } from "../../main";
 import styles from "./LoginForm.module.css";
 
@@ -58,7 +58,7 @@ export const LoginForm = () => {
         <label>
           {isSendingData ? (
             <div className={styles.loader}>
-              <ClipLoader_1 />
+              <ClipLoader color="#85e1f9" />
             </div>
           ) : (
             <div>

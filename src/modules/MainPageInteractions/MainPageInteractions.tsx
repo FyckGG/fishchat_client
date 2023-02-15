@@ -1,7 +1,7 @@
 import React from "react";
 import MainPageGreeting from "../../components/MainPageGreeting/MainPageGreeting";
-import SignForm from "../SignForm/SignForm";
-import { LoginForm } from "../LoginForm/LoginForm";
+import SignForm from "../SignForm";
+import LoginForm from "../LoginForm";
 import styles from "./MainPageInteractions.module.css";
 
 export const MainPageInteractions = () => {
