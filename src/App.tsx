@@ -6,12 +6,13 @@ import { MainPage } from "./pages/MainPage/MainPage";
 import { ChatsPage } from "./pages/ChatsPage/ChatsPage";
 import { Context } from "./main";
 import { ToastContainer } from "react-toastify";
+import { observer } from "mobx-react-lite";
 import "./App.css";
 
-const App = () => {
+const App = observer(() => {
   const store = React.useContext(Context);
-  const navigate = useNavigate();
-  const location = useLocation();
+  //const navigate = useNavigate();
+  //const location = useLocation();
 
   const defaultProtectedRouteProps: Omit<UnauthRouteProps, "outlet"> = {
     isAuthenticated: store.isAuth,
@@ -23,11 +24,16 @@ const App = () => {
       if (localStorage.getItem("token")) {
         await store.checkAuth();
 
-        if (location.pathname == "/" && store.isAuth) navigate("/chats");
+        //if (location.pathname == "/" && store.isAuth) navigate("/chats");
       } else store.setIsloading(false);
     };
     checkAuthEffect();
   }, []);
+
+  // React.useEffect(() => {
+  //   console.log("ff" + store.isAuth);
+  //   if (location.pathname == "/" && store.isAuth) navigate("/chats");
+  // }, [store.isAuth]);
 
   return (
     <div className="App">
@@ -48,6 +54,6 @@ const App = () => {
       </div>
     </div>
   );
-};
+});
 
 export default App;
