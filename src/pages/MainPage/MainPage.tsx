@@ -8,7 +8,7 @@ import styles from "./MainPage.module.css";
 export const MainPage = observer(() => {
   const store = React.useContext(Context);
   return (
-    <div>
+    <div className={styles.main_page}>
       {store.isloading ? (
         <ClipLoader color="#85e1f9" size="15rem" />
       ) : (
