@@ -1,11 +1,6 @@
 import ky from "ky";
 
-const $api = ky.create({ prefixUrl: process.env.REACT_API_URL });
-
-$api.extend({
-  //   headers: {
-  //     Authorization: `Bearer ${localStorage.getItem("token")}`,
-  //   },
+const $api = ky.extend({
   hooks: {
     beforeRequest: [
       (request) => {
@@ -13,6 +8,7 @@ $api.extend({
           "Authorization",
           `Bearer ${localStorage.getItem("token")}`
         );
+        console.log(request.headers);
       },
     ],
     afterResponse: [
@@ -33,3 +29,5 @@ $api.extend({
     ],
   },
 });
+
+export default $api;
