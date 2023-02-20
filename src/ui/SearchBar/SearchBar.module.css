@@ -1,13 +1,12 @@
+.search_bar {
+  display: inline;
+  padding: 0.5rem;
+}
+
 .search_bar input[type="text"] {
-  font-size: 3rem;
+  width: 40vw;
+  font-size: 2rem;
   border-radius: 1rem;
   border-width: 0.3rem;
   border-color: #85e1f9;
-}
-
-.search_bar input[type="text"] :hover {
-  font-size: 1rem;
-  border-radius: 1rem;
-  border-width: 0.3rem;
-  border-color: red;
 }
