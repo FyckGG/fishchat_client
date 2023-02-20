@@ -12,7 +12,11 @@ const AppRoutes = () => {
         <>
           <Routes>
             {AuthorizedRoutes.map((route) => (
-              <Route path={route.path} element={route.page}></Route>
+              <Route
+                key={route.path}
+                path={route.path}
+                element={route.page}
+              ></Route>
             ))}
             <Route
               path="*"
@@ -24,7 +28,11 @@ const AppRoutes = () => {
         <>
           <Routes>
             {UnauthorizedRoutes.map((route) => (
-              <Route path={route.path} element={route.page}></Route>
+              <Route
+                key={route.path}
+                path={route.path}
+                element={route.page}
+              ></Route>
             ))}
             <Route path="*" element={<Navigate to={RouteNames.MAIN} />}></Route>
           </Routes>
