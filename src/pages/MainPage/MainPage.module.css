@@ -4,3 +4,7 @@
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
 }
+
+.main_page_interactions {
+  display: flex;
+}
