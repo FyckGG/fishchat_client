@@ -1,9 +1,10 @@
 import { makeAutoObservable } from "mobx";
 import UserDto from "../globalInterfaces/UserDto";
 import ky, { KyResponse } from "ky";
+import StoreUser from "../globalInterfaces/StoreUser";
 
 class Store {
-  user = {};
+  user!: StoreUser;
   isAuth = false;
   //isLoading = false;
   isloading = true;
@@ -12,7 +13,7 @@ class Store {
     makeAutoObservable(this);
   }
 
-  setUser(user: object) {
+  setUser(user: StoreUser) {
     this.user = user;
   }
 
@@ -35,7 +36,7 @@ class Store {
       const json_is_auth_response: UserDto = await is_auth_response.json();
       localStorage.setItem("token", json_is_auth_response.acces_token);
       this.setAuth(true);
-      this.setUser(json_is_auth_response.user);
+      this.setUser(json_is_auth_response.user as StoreUser);
     } catch (e) {
       console.log(e);
     } finally {
