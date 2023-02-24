@@ -1,4 +1,27 @@
 .user_block {
+  /* display: flex; */
   background-color: #515455;
   font-size: 2rem;
+}
+
+.user_login {
+  /* margin-left: 1rem; */
+  display: inline;
+  width: 20%;
+}
+
+.user_status {
+  display: inline;
+  margin-left: 1rem;
+}
+
+.user_block_icons {
+  display: inline;
+  width: 30%;
+  float: right;
+}
+
+.icon {
+  display: inline;
+  margin-left: 1rem;
 }
