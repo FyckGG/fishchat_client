@@ -1,0 +1,16 @@
+.icon {
+  display: inline;
+  margin-left: 1rem;
+}
+
+.icon_default {
+  color: blue;
+}
+
+.icon_activated {
+  color: green;
+}
+
+.icon_disabled {
+  color: red;
+}
