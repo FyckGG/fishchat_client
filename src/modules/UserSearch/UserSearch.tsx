@@ -1,15 +1,17 @@
 import React from "react";
 import SearchBar from "../../ui/SearchBar/SearchBar";
-import { Context } from "../../main";
+import { Context, UserSearchContext } from "../../main";
 import ws from "./websockets/websocket";
 
-const UserSearch = (props: { return_search_results: Function }) => {
+const UserSearch = () => {
   const store = React.useContext(Context);
+  const user_search_store = React.useContext(UserSearchContext);
   ws.onmessage = (event) => {
-    props.return_search_results(event.data);
+    user_search_store.setUsersList(Object.values(JSON.parse(event.data).users));
   };
 
   const handleSearchTextChange: Function = (e: string) => {
+    user_search_store.setSearchString(e);
     ws.send(
       JSON.stringify({
         type: import.meta.env.VITE_REACT_APP_WSS_USERFIND_TYPE,
