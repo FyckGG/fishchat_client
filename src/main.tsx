@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import Store from "./globalStore/store";
-import UserSearchStore from "./globalStore/userSearchStore";
+import UserSearchStore from "./globalStore/UserSearchStore";
 import "./index.css";
 
 const store = new Store();
