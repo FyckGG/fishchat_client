@@ -4,13 +4,33 @@
 }
 
 .icon_default {
-  color: blue;
+  color: #9fa5a6;
+}
+
+.icon_default:hover {
+  cursor: pointer;
+  color: #c6cccd;
 }
 
 .icon_activated {
-  color: green;
+  color: #7dc97c;
+}
+
+.icon_activated:hover {
+  cursor: pointer;
+  color: #94f292;
+}
+
+.icon_alt_activated {
+  color: #cb0805;
+}
+
+.icon_alt_activated:hover {
+  cursor: pointer;
+  color: #e6672d;
 }
 
 .icon_disabled {
-  color: red;
+  color: #676b6c;
+  pointer-events: none;
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import { faBan } from "@fortawesome/free-solid-svg-icons";
-//import sendFollow from "../../api/sendFollow";
 import banUser from "../../api/banUser";
 import cancelBanUser from "../../api/cancelBanUser";
 import UserBlockIcon from "../../../../ui/UserBlockIcon/UserBlockIcon";
@@ -8,7 +7,6 @@ import { Context } from "../../../../main";
 import { UserSearchContext } from "../../../../main";
 import IconStatus from "../../../../textConstants/IconStatus";
 import UserDialogBlock from "../../../../globalInterfaces/UserDialogBlock";
-//import getSendFollowStatusByUserStatus from "../../helpers/getSendFollowStatusByUserStatus";
 import getBanUserStatusByUserStatus from "../../helpers/getBanUserStatusByUserStatus";
 import { observer } from "mobx-react-lite";
 
@@ -24,6 +22,7 @@ export const BanUserButton = observer(
         <UserBlockIcon
           icon={faBan}
           icon_status={button_status}
+          alt_activated_style={true}
           icon_action={async () => {
             const new_status =
               button_status == IconStatus.DEFAULT
