@@ -10,7 +10,7 @@ const authorization = async (email: string, password: string) => {
       json: { email: email, password: password },
     }
   );
-  console.log(authorization_result);
+
   const json_result: UserDto = await authorization_result.json();
   return json_result;
 };
