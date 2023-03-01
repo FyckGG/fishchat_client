@@ -13,7 +13,7 @@ export const getStatusForUserBlock = (status: string) => {
     case UserRelationships.BLOCKED_SOURCE:
       return UserBlockStatus.BLOCKED_SOURCE;
     case UserRelationships.BLOCKED_TARGET:
-      return UserBlockStatus.SUBSCRIBER_TARGET;
+      return UserBlockStatus.BLOCKED_TARGET;
     default:
       return "";
   }
