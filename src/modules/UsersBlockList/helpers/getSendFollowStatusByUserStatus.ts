@@ -7,6 +7,8 @@ const getSendFollowStatusByUserStatus = (user_status: string) => {
       return IconStatus.ACTIVATED;
     case UserRelationships.BLOCKED_SOURCE:
       return IconStatus.DISABLED;
+    case UserRelationships.BLOCKED_TARGET:
+      return IconStatus.DISABLED;
     case UserRelationships.SUBSCRIBER_TARGET:
       return IconStatus.DISABLED;
     default:
