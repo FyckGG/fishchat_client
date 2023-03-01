@@ -5,6 +5,7 @@ import { errorNotify } from "../../globalFunctions/erorrNotify";
 import FillForm from "../../components/FillForm/FillForm";
 import { ClipLoader } from "react-spinners";
 import { Context } from "../../main";
+import { sendIdToWebSocket } from "./api/sendIdToWebsocket";
 import styles from "./LoginForm.module.css";
 
 export const LoginForm = () => {
@@ -21,6 +22,7 @@ export const LoginForm = () => {
       localStorage.setItem("token", result.acces_token);
       store.setAuth(true);
       store.setUser(result.user);
+      sendIdToWebSocket(result.user.id);
       succesNotify("Succesful authorization");
       setIsSendingData(false);
     } catch (e: any) {

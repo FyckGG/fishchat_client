@@ -8,6 +8,7 @@ import validatePassword from "./helpers/validatePassword";
 import { errorNotify } from "../../globalFunctions/erorrNotify";
 import { succesNotify } from "../../globalFunctions/succesNotify";
 import registration from "./api/registration";
+import { sendIdToWebSocket } from "./api/sendIdToWebSocket";
 import { Context } from "../../main";
 import styles from "./SignForm.module.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -31,6 +32,7 @@ const SignForm = () => {
       localStorage.setItem("token", result.acces_token);
       store.setAuth(true);
       store.setUser(result.user);
+      sendIdToWebSocket(result.user.id);
       succesNotify("Succesful registration");
       setIsSendingData(false);
     } catch (e: any) {
