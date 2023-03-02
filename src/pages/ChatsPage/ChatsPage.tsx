@@ -21,7 +21,7 @@ export const ChatsPage = observer(() => {
   return (
     <div>
       <Navbar>
-        <UserSearch return_search_results={handleFoundUsersChange} />
+        <UserSearch />
         <div className={styles.logout}>
           <Logout />
         </div>
