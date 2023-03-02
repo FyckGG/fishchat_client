@@ -3,6 +3,8 @@ import UserRelationships from "../../../textConstants/userRelationships";
 
 const getSendFollowStatusByUserStatus = (user_status: string) => {
   switch (user_status) {
+    case UserRelationships.FRIEND:
+      return IconStatus.DISABLED;
     case UserRelationships.SUBSCRIBER_SOURCE:
       return IconStatus.ACTIVATED;
     case UserRelationships.BLOCKED_SOURCE:
