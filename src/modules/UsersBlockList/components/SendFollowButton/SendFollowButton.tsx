@@ -1,19 +1,18 @@
 import React from "react";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-import sendFollow from "../../api/sendFollow";
-import cancelFollow from "../../api/cancelFollow";
 import UserBlockIcon from "../../../../ui/UserBlockIcon/UserBlockIcon";
 import { Context } from "../../../../main";
-import { UserSearchContext } from "../../../../main";
 import IconStatus from "../../../../textConstants/IconStatus";
 import UserDialogBlock from "../../../../globalInterfaces/UserDialogBlock";
 import getSendFollowStatusByUserStatus from "../../helpers/getSendFollowStatusByUserStatus";
+import sendUsersInteraction from "../../api/sendUsersInteraction";
+import WebsocketSendClientTypes from "../../../../textConstants/websocketSendClientTypes";
 import { observer } from "mobx-react-lite";
 
 export const SendFollowButton = observer(
   (props: { target_user: UserDialogBlock }) => {
     const store = React.useContext(Context);
-    const userSearchStore = React.useContext(UserSearchContext);
+
     const button_status = getSendFollowStatusByUserStatus(
       props.target_user.status
     );
@@ -26,14 +25,17 @@ export const SendFollowButton = observer(
             button_status == IconStatus.DISABLED
               ? () => {}
               : async () => {
-                  const new_status =
-                    button_status == IconStatus.DEFAULT
-                      ? await sendFollow(store.user.id, props.target_user.id)
-                      : await cancelFollow(store.user.id, props.target_user.id);
-                  userSearchStore.changeUserStatus(
-                    props.target_user.id,
-                    new_status
-                  );
+                  button_status == IconStatus.DEFAULT
+                    ? await sendUsersInteraction(
+                        store.user.id,
+                        props.target_user.id,
+                        WebsocketSendClientTypes.SEND_FOLLOW
+                      )
+                    : await sendUsersInteraction(
+                        store.user.id,
+                        props.target_user.id,
+                        WebsocketSendClientTypes.CANCEL_FOLLOW
+                      );
                 }
           }
         />
