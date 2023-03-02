@@ -1,6 +1,6 @@
 import React from "react";
 
-import { UnauthRouteProps } from "./customRoutes/UnauthRoute";
+//import { UnauthRouteProps } from "./customRoutes/UnauthRoute";
 
 import { Context } from "./main";
 import { ToastContainer } from "react-toastify";
@@ -14,10 +14,10 @@ const App = observer(() => {
   //const navigate = useNavigate();
   //const location = useLocation();
 
-  const defaultProtectedRouteProps: Omit<UnauthRouteProps, "outlet"> = {
-    isAuthenticated: store.isAuth,
-    navigatePath: "/chats",
-  };
+  // const defaultProtectedRouteProps: Omit<UnauthRouteProps, "outlet"> = {
+  //   isAuthenticated: store.isAuth,
+  //   navigatePath: "/chats",
+  // };
 
   React.useEffect(() => {
     const checkAuthEffect = async () => {
