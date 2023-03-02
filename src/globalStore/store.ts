@@ -2,6 +2,7 @@ import { makeAutoObservable } from "mobx";
 import UserDto from "../globalInterfaces/UserDto";
 import ky, { KyResponse } from "ky";
 import StoreUser from "../globalInterfaces/StoreUser";
+import WebsocketSendClientTypes from "../textConstants/websocketSendClientTypes";
 import ws from "../websocket";
 
 class Store {
@@ -41,7 +42,8 @@ class Store {
       this.setUser(json_is_auth_response.user);
       ws.send(
         JSON.stringify({
-          type: import.meta.env.VITE_REACT_APP_WSS_USERID_TYPE,
+          //type: import.meta.env.VITE_REACT_APP_WSS_USERID_TYPE,
+          type: WebsocketSendClientTypes.USER_ID,
           sender: json_is_auth_response.user.id,
           //message: e,
         })

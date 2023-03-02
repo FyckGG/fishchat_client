@@ -1,11 +1,11 @@
 import ws from "../../../websocket";
+import WebsocketSendClientTypes from "../../../textConstants/websocketSendClientTypes";
 
 export const sendIdToWebSocket = (id: string) => {
   ws.send(
     JSON.stringify({
-      type: import.meta.env.VITE_REACT_APP_WSS_USERID_TYPE,
+      type: WebsocketSendClientTypes.USER_ID,
       sender: id,
-      //message: e,
     })
   );
 };
