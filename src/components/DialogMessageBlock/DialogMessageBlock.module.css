@@ -1,0 +1,19 @@
+.dialog_message_block {
+  padding: 1rem;
+  display: flex;
+  /* flex-direction: row-reverse; */
+}
+
+.my_message {
+  flex-direction: row-reverse;
+}
+
+.interlocutor_message {
+  flex-direction: row;
+}
+
+.circle {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+}

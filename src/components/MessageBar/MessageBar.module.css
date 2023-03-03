@@ -1,0 +1,9 @@
+.message_bar {
+  background-color: #707374;
+  display: flex;
+  padding: 1rem;
+}
+
+.gg {
+  margin: auto;
+}
