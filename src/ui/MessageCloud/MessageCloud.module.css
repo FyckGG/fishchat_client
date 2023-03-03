@@ -1,0 +1,23 @@
+.message_cloud {
+  font-size: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 1rem;
+}
+
+.my_message {
+  background-color: teal;
+}
+
+.interlocutor_message {
+  background-color: brown;
+}
+
+.message_text {
+  display: block;
+}
+
+.message_time {
+  font-size: 1rem;
+  display: inline;
+  float: right;
+}
