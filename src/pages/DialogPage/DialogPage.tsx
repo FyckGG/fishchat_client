@@ -1,5 +1,19 @@
-import React from "react";
+import DialogMessageList from "../../modules/DialogMessageList";
+import SendMessagePanel from "../../modules/SendMessagePanel";
+import { useSearchParams } from "react-router-dom";
+import styles from "./DialogPage.module.css";
 
 export const DialogPage = () => {
-  return <div>DialogPage</div>;
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  return (
+    <div>
+      <div className={styles.dialog_div}>
+        {/* <DialogMessageBlock />
+        <DialogMessageBlock /> */}
+        <DialogMessageList />
+        <SendMessagePanel target_user={searchParams.get("target_user")} />
+      </div>
+    </div>
+  );
 };
