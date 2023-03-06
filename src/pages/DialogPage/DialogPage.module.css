@@ -3,3 +3,8 @@
   margin: auto;
   margin-top: 10px;
 }
+
+.send_message_panel {
+  position: sticky;
+  bottom: 0;
+}
