@@ -2,24 +2,32 @@ import React, { useRef } from "react";
 import DialogMessageBlock from "../../components/DialogMessageBlock/DialogMessageBlock";
 import ws from "../../websocket";
 import WebsocketSendServerTypes from "../../textConstants/websocketSendServerTypes";
-import DialogMessageStore from "./store/DialogMessageStore";
+// import DialogMessageStore from "./store/DialogMessageStore";
+import DialogMessageStore from "../../globalStore/DialogMessageStore";
 import changeMessageReadStatus from "./api/changeMessageReadStatus";
 import { Context } from "../../main";
 import { observer } from "mobx-react-lite";
 import styles from "./DialogMessageList.module.css";
 
 const DialogMessageList = observer(() => {
-  const arr_ref: any[] = [];
+  //const arr_ref: any[] = [];
   const store = React.useContext(Context);
   const dateParser = new Intl.DateTimeFormat("ru");
-  ws.onmessage = (event) => {
-    if (
-      JSON.parse(event.data).message_type ==
-      WebsocketSendServerTypes.NEW_DIALOG_MESSAGE
-    )
-      DialogMessageStore.addNewMessage(JSON.parse(event.data).new_message);
-    console.log(JSON.parse(event.data).new_message);
-  };
+  // ws.onmessage = (event) => {
+  //   if (
+  //     JSON.parse(event.data).message_type ==
+  //     WebsocketSendServerTypes.NEW_DIALOG_MESSAGE
+  //   )
+  //     DialogMessageStore.addNewMessage(JSON.parse(event.data).new_message);
+  //   console.log("new_message");
+  //   if (
+  //     JSON.parse(event.data).message_type ==
+  //     WebsocketSendServerTypes.NEW_MESSAGE_READ_STATUS
+  //   )
+  //     DialogMessageStore.changeMessageReadStatus(
+  //       JSON.parse(event.data).message_id
+  //     );
+  // };
 
   // if (DialogMessageStore.message_list != null)
   //   DialogMessageStore.message_list.map((message) => {
@@ -42,7 +50,6 @@ const DialogMessageList = observer(() => {
             />
           ))} */}
           {DialogMessageStore.message_list.map((message) => {
-            // const ref = useRef();
             if (
               message.target_id == store.user.id &&
               !message.is_message_read
