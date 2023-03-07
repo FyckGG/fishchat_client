@@ -7,22 +7,22 @@ import WebsocketSendServerTypes from "../../textConstants/websocketSendServerTyp
 import { UserSearchContext } from "../../main";
 import { observer } from "mobx-react-lite";
 import styles from "./UsersBlockList.module.css";
+import { once } from "mobx/dist/internal";
 
 const UsersBlockList = observer(
   (props: { users_list: UserDialogBlock[] | null }) => {
     const user_search_store = React.useContext(UserSearchContext);
 
-    ws.addEventListener("message", (event) => {
+    ws.onmessage = (event) => {
       if (
         JSON.parse(event.data).message_type ==
         WebsocketSendServerTypes.NEW_STATUS
       )
-        console.log(JSON.parse(event.data).new_status);
-      user_search_store.changeUserStatus(
-        JSON.parse(event.data).target_user_id,
-        JSON.parse(event.data).new_status
-      );
-    });
+        user_search_store.changeUserStatus(
+          JSON.parse(event.data).target_user_id,
+          JSON.parse(event.data).new_status
+        );
+    };
 
     if (props.users_list !== null) {
     }
