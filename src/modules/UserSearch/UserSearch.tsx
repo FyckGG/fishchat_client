@@ -4,19 +4,25 @@ import { Context, UserSearchContext } from "../../main";
 import WebsocketSendClientTypes from "../../textConstants/websocketSendClientTypes";
 import WebsocketSendServerTypes from "../../textConstants/websocketSendServerTypes";
 import ws from "../../websocket";
+import { once } from "mobx/dist/internal";
 
 const UserSearch = () => {
   const store = React.useContext(Context);
   const user_search_store = React.useContext(UserSearchContext);
 
-  ws.addEventListener("message", (event) => {
-    if (
-      JSON.parse(event.data).message_type == WebsocketSendServerTypes.FIND_USER
-    )
-      user_search_store.setUsersList(
-        Object.values(JSON.parse(event.data).users)
-      );
-  });
+  ws.addEventListener(
+    "message",
+    (event) => {
+      if (
+        JSON.parse(event.data).message_type ==
+        WebsocketSendServerTypes.FIND_USER
+      )
+        user_search_store.setUsersList(
+          Object.values(JSON.parse(event.data).users)
+        );
+    },
+    { once: true }
+  );
 
   const handleSearchTextChange: Function = (e: string) => {
     user_search_store.setSearchString(e);
