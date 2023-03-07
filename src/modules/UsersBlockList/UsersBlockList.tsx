@@ -13,7 +13,7 @@ const UsersBlockList = observer(
   (props: { users_list: UserDialogBlock[] | null }) => {
     const user_search_store = React.useContext(UserSearchContext);
 
-    ws.onmessage = (event) => {
+    ws.addEventListener("message", (event) => {
       if (
         JSON.parse(event.data).message_type ==
         WebsocketSendServerTypes.NEW_STATUS
@@ -22,7 +22,19 @@ const UsersBlockList = observer(
           JSON.parse(event.data).target_user_id,
           JSON.parse(event.data).new_status
         );
-    };
+    });
+
+    // ws.onmessage = (event) => {
+    //   console.log("uijdeiwed");
+    //   if (
+    //     JSON.parse(event.data).message_type ==
+    //     WebsocketSendServerTypes.NEW_STATUS
+    //   )
+    //     user_search_store.changeUserStatus(
+    //       JSON.parse(event.data).target_user_id,
+    //       JSON.parse(event.data).new_status
+    //     );
+    // };
 
     if (props.users_list !== null) {
     }
