@@ -5,6 +5,7 @@ import styles from "./DialogPage.module.css";
 
 export const DialogPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const arr: number[] = [1, 2, 3];
 
   return (
     <div>
