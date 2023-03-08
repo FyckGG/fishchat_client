@@ -12,7 +12,9 @@ export const DialogPage = () => {
       <div className={styles.dialog_div}>
         {/* <DialogMessageBlock />
         <DialogMessageBlock /> */}
-        <DialogMessageList />
+        <DialogMessageList
+          interlocutor_user={searchParams.get("target_user")}
+        />
         <div className={styles.send_message_panel}>
           <SendMessagePanel target_user={searchParams.get("target_user")} />
         </div>
