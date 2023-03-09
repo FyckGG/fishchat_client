@@ -4,6 +4,10 @@
   margin-top: 10px;
 }
 
+.dialog_message_list {
+  min-height: 90vh;
+}
+
 .send_message_panel {
   position: sticky;
   bottom: 0;
