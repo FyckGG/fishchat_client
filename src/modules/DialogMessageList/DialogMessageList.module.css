@@ -1,18 +1,18 @@
-.dialog_message_list {
+/* .dialog_message_list {
   height: 90vh;
   position: relative;
-}
+} */
 
-.list_items {
+/* .list_items {
   position: absolute;
   width: 100%;
   bottom: 0;
-}
+} */
 
-.empty {
+/* .empty {
   position: absolute;
   margin: 0;
   top: 50%;
   left: 40%;
   font-size: 3rem;
-}
+} */
