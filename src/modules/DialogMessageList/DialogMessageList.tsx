@@ -91,6 +91,7 @@ const DialogMessageList = observer((props: { interlocutor_user: string }) => {
             scrollableTarget="scrollableDiv"
           >
             {DialogMessageStore.message_list.map((message) => {
+              ///////??????????
               if (
                 (message.source_id != store.user.id &&
                   message.source_id != props.interlocutor_user) ||
