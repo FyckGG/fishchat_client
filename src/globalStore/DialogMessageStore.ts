@@ -4,12 +4,41 @@ import $api from "../http";
 import GetMessageResponce from "../globalInterfaces/GetMessageResponce";
 import MessageBlock from "../globalInterfaces/MessageBlock";
 import Interlocutor from "../globalInterfaces/Interlocutor";
+import { Dialog } from "../globalInterfaces/Dialog";
 
 class sendDialogMessageStore {
   interlocutor_list: Interlocutor[] = [];
   message_list: MessageBlock[] = [];
   constructor() {
     makeAutoObservable(this);
+  }
+
+  async getDialogs(user_id: string) {
+    const getting_dialog_result: KyResponse = await $api.get(
+      `${
+        import.meta.env.VITE_REACT_APP_API_URL
+      }/dialog/get-user-dialogs/?user_id=${user_id}&dialog_count=20&dialog_part=0`
+    );
+    console.log("dialog");
+    const json_getting_dialog_result: Dialog[] =
+      await getting_dialog_result.json();
+    json_getting_dialog_result.map((dialog) => {
+      if (
+        this.interlocutor_list.filter(
+          (interlocutor) =>
+            interlocutor.interlocutor_id == dialog.interlocutor_id
+        ).length == 0
+      ) {
+        this.interlocutor_list.push({
+          interlocutor_id: dialog.interlocutor_id,
+          messages_count: dialog.dialog_length,
+        });
+        dialog.messages.map((message) => {
+          this.message_list.push(message);
+        });
+      }
+    });
+    //console.log("gg");
   }
 
   async getMessagesForDialog(
@@ -81,6 +110,30 @@ class sendDialogMessageStore {
     return json_getting_message_result;
   }
 
+  getLastDialogMessage(interlocutor_id: string): MessageBlock | null {
+    let last_message = null;
+    this.message_list.map((message) => {
+      if (
+        message.source_id == interlocutor_id ||
+        message.target_id == interlocutor_id
+      ) {
+        last_message = message;
+        return;
+      }
+    });
+    //console.log("gg");
+    return last_message;
+  }
+
+  getCountUnreadDialogMessages(interlocutor_id: string) {
+    let unread_messages = 0;
+    this.message_list.map((message) => {
+      if (message.source_id == interlocutor_id && !message.is_message_read)
+        unread_messages++;
+    });
+    return unread_messages;
+  }
+
   getStoreCountDialogMessages(interlocutor_id: string) {
     let messages_count = 0;
     this.message_list.map((message) => {
@@ -103,17 +156,30 @@ class sendDialogMessageStore {
     return dialog_count;
   }
 
+  moveDialog(interlocutor_id: string) {
+    this.interlocutor_list.map((interlocutor, index) => {
+      if (interlocutor.interlocutor_id == interlocutor_id) {
+        let moving_interlocutor = this.interlocutor_list.splice(index, 1);
+        this.interlocutor_list.unshift(moving_interlocutor[0]);
+      }
+    });
+  }
+
   addNewMessage(message: MessageBlock) {
     if (this.message_list.length == 0) this.message_list = [message];
     else this.message_list.push(message);
+    let interlocutor_id = "";
     this.interlocutor_list.map((interlocutor) => {
       if (
         interlocutor.interlocutor_id == message.source_id ||
         interlocutor.interlocutor_id == message.target_id
       ) {
+        interlocutor_id = interlocutor.interlocutor_id;
         interlocutor.messages_count++;
       }
     });
+    console.log("new message");
+    this.moveDialog(interlocutor_id);
   }
 
   changeMessageReadStatus(message_id: string) {
