@@ -1,0 +1,7 @@
+.unread_messages_count {
+  background-color: #828788;
+  border-radius: 15px;
+  padding: 0.5rem;
+  font-size: 1.4rem;
+  display: inline;
+}
