@@ -10,6 +10,10 @@ const UserSearch = () => {
   const store = React.useContext(Context);
   const user_search_store = React.useContext(UserSearchContext);
 
+  React.useEffect(() => {
+    user_search_store.setSearchString("");
+  }, []);
+
   ws.addEventListener(
     "message",
     (event) => {
