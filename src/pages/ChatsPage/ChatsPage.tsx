@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import UserSearch from "../../modules/UserSearch";
+import DialogBlockList from "../../modules/DialogBlockList";
 import UsersBlockList from "../../modules/UsersBlockList";
 import Logout from "../../modules/Logout";
 import { UserSearchContext } from "../../main";
@@ -18,6 +19,7 @@ export const ChatsPage = observer(() => {
           <Logout />
         </div>
       </Navbar>
+      <DialogBlockList />
       <div className={styles.users_block_list}>
         {user_search_context.search_string == "" ? (
           <></>
