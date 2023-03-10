@@ -1,0 +1,45 @@
+.dialog_block {
+  background-color: #515455;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.dialog_block:hover {
+  background-color: #747778;
+  cursor: pointer;
+}
+
+.dialog_name {
+  font-size: 2rem;
+  display: inline;
+  float: left;
+  margin-left: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.messages {
+  display: flex;
+}
+
+.dialog_last_message {
+  font-size: 1.5rem;
+  text-align: left;
+  width: 95%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.last_message_date {
+  font-size: 1.4rem;
+  display: inline;
+  float: right;
+  margin-right: 1rem;
+}
+
+.unread_messages_count {
+  margin-left: 1rem;
+}
