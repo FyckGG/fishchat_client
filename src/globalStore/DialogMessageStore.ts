@@ -2,24 +2,62 @@ import { makeAutoObservable } from "mobx";
 import { KyResponse } from "ky";
 import $api from "../http";
 import GetMessageResponce from "../globalInterfaces/GetMessageResponce";
+import GetDialogResponce from "../globalInterfaces/GetDialogsResponce";
 import MessageBlock from "../globalInterfaces/MessageBlock";
 import Interlocutor from "../globalInterfaces/Interlocutor";
 import { Dialog } from "../globalInterfaces/Dialog";
 
 class sendDialogMessageStore {
   interlocutor_list: Interlocutor[] = [];
+  interlocutors_count: number = 0;
   message_list: MessageBlock[] = [];
   constructor() {
     makeAutoObservable(this);
   }
 
-  async getDialogs(user_id: string) {
+  async getDialogs(user_id: string, dialogs_count: number) {
     const getting_dialog_result: KyResponse = await $api.get(
       `${
         import.meta.env.VITE_REACT_APP_API_URL
-      }/dialog/get-user-dialogs/?user_id=${user_id}&dialog_count=20&dialog_part=0`
+      }/dialog/get-user-dialogs/?user_id=${user_id}&dialog_count=${dialogs_count}&dialog_part=0`
     );
 
+    // const json_getting_dialog_result: Dialog[] =
+    const json_getting_dialog_result: GetDialogResponce =
+      await getting_dialog_result.json();
+
+    const dialogs: Dialog[] = json_getting_dialog_result.dialogs;
+    //json_getting_dialog_result.map((dialog) => {
+    dialogs.map((dialog) => {
+      if (
+        this.interlocutor_list.filter(
+          (interlocutor) =>
+            interlocutor.interlocutor_id == dialog.interlocutor_id
+        ).length == 0
+      ) {
+        this.interlocutor_list.push({
+          interlocutor_id: dialog.interlocutor_id,
+          interlocutor_name: dialog.interlocutor_name,
+          messages_count: dialog.dialog_length,
+        });
+        dialog.messages.map((message) => {
+          this.message_list.push(message);
+        });
+      }
+    });
+    this.interlocutors_count = json_getting_dialog_result.dialogs_count;
+  }
+
+  async getMoreDialogs(
+    user_id: string,
+    dialogs_count: number,
+    dialogs_part: number
+  ) {
+    const getting_dialog_result: KyResponse = await $api.get(
+      `${
+        import.meta.env.VITE_REACT_APP_API_URL
+      }/dialog/get-user-dialogs/?user_id=${user_id}&dialog_count=${dialogs_count}&dialog_part=${dialogs_part}`
+    );
     const json_getting_dialog_result: Dialog[] =
       await getting_dialog_result.json();
     json_getting_dialog_result.map((dialog) => {
@@ -156,6 +194,14 @@ class sendDialogMessageStore {
     return dialog_count;
   }
 
+  getStoreDialogsCount() {
+    return this.interlocutor_list.length;
+  }
+
+  getDialogsCount() {
+    return this.interlocutors_count;
+  }
+
   moveDialog(interlocutor_id: string) {
     this.interlocutor_list.map((interlocutor, index) => {
       if (interlocutor.interlocutor_id == interlocutor_id) {
@@ -171,6 +217,7 @@ class sendDialogMessageStore {
       interlocutor_name: interlocutor_name,
       messages_count: 1,
     });
+    this.interlocutors_count++;
   }
 
   addNewMessage(
