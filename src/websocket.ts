@@ -13,7 +13,8 @@ ws.onmessage = (event) => {
       //JSON.parse(event.data).interlocutor_id,
       JSON.parse(event.data).new_message,
       //
-      JSON.parse(event.data).interlocutor_id
+      JSON.parse(event.data).interlocutor_id,
+      JSON.parse(event.data).interlocutor_name
     );
 
   if (

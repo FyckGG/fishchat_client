@@ -31,6 +31,7 @@ class sendDialogMessageStore {
       ) {
         this.interlocutor_list.push({
           interlocutor_id: dialog.interlocutor_id,
+          interlocutor_name: dialog.interlocutor_name,
           messages_count: dialog.dialog_length,
         });
         dialog.messages.map((message) => {
@@ -66,6 +67,7 @@ class sendDialogMessageStore {
 
       this.interlocutor_list.push({
         interlocutor_id: interlocutor_id,
+        interlocutor_name: json_getting_message_result.user_2_name,
         messages_count: json_getting_message_result.dialog_length,
       });
       console.log(this.interlocutor_list);
@@ -163,14 +165,19 @@ class sendDialogMessageStore {
     });
   }
 
-  addNewDialog(interlocutor_id: string) {
+  addNewDialog(interlocutor_id: string, interlocutor_name: string) {
     this.interlocutor_list.push({
       interlocutor_id: interlocutor_id,
+      interlocutor_name: interlocutor_name,
       messages_count: 1,
     });
   }
 
-  addNewMessage(message: MessageBlock, interlocutor_id: string) {
+  addNewMessage(
+    message: MessageBlock,
+    interlocutor_id: string,
+    interlocutor_name: string
+  ) {
     if (this.message_list.length == 0) this.message_list = [message];
     else this.message_list.push(message);
 
@@ -190,7 +197,7 @@ class sendDialogMessageStore {
 
     //if (interlocutor_id == "") {
     if (!is_interlocutor) {
-      this.addNewDialog(interlocutor_id);
+      this.addNewDialog(interlocutor_id, interlocutor_name);
     }
 
     this.moveDialog(interlocutor_id);

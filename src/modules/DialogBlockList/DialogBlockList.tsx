@@ -46,7 +46,7 @@ const DialogBlockList = observer(() => {
             >
               <DialogBlock
                 key={interlocutor.interlocutor_id}
-                dialog_name={interlocutor.interlocutor_id}
+                dialog_name={interlocutor.interlocutor_name}
                 message={last_message.message_text}
                 is_my_message={last_message.source_id == store.user.id}
                 is_message_read={last_message.is_message_read}
