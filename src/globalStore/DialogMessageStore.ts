@@ -19,7 +19,7 @@ class sendDialogMessageStore {
         import.meta.env.VITE_REACT_APP_API_URL
       }/dialog/get-user-dialogs/?user_id=${user_id}&dialog_count=20&dialog_part=0`
     );
-    console.log("dialog");
+
     const json_getting_dialog_result: Dialog[] =
       await getting_dialog_result.json();
     json_getting_dialog_result.map((dialog) => {
@@ -38,7 +38,6 @@ class sendDialogMessageStore {
         });
       }
     });
-    //console.log("gg");
   }
 
   async getMessagesForDialog(
@@ -69,7 +68,7 @@ class sendDialogMessageStore {
         interlocutor_id: interlocutor_id,
         messages_count: json_getting_message_result.dialog_length,
       });
-
+      console.log(this.interlocutor_list);
       return json_getting_message_result;
     } else {
       const dialog_messages: MessageBlock[] = [];
@@ -102,7 +101,6 @@ class sendDialogMessageStore {
     const json_getting_message_result: GetMessageResponce =
       await getting_messages_result.json();
 
-    console.log(json_getting_message_result.messages);
     for (let i = json_getting_message_result.messages.length - 1; i >= 0; i--) {
       this.message_list.unshift(json_getting_message_result.messages[i]);
     }
@@ -121,7 +119,7 @@ class sendDialogMessageStore {
         return;
       }
     });
-    //console.log("gg");
+
     return last_message;
   }
 
@@ -165,20 +163,36 @@ class sendDialogMessageStore {
     });
   }
 
-  addNewMessage(message: MessageBlock) {
+  addNewDialog(interlocutor_id: string) {
+    this.interlocutor_list.push({
+      interlocutor_id: interlocutor_id,
+      messages_count: 1,
+    });
+  }
+
+  addNewMessage(message: MessageBlock, interlocutor_id: string) {
     if (this.message_list.length == 0) this.message_list = [message];
     else this.message_list.push(message);
-    let interlocutor_id = "";
+
+    let is_interlocutor = false;
+
     this.interlocutor_list.map((interlocutor) => {
       if (
-        interlocutor.interlocutor_id == message.source_id ||
-        interlocutor.interlocutor_id == message.target_id
+        //interlocutor.interlocutor_id == message.source_id ||
+        //interlocutor.interlocutor_id == message.target_id
+        interlocutor.interlocutor_id == interlocutor_id
       ) {
-        interlocutor_id = interlocutor.interlocutor_id;
+        //interlocutor_id = interlocutor.interlocutor_id;
+        is_interlocutor = true;
         interlocutor.messages_count++;
       }
     });
-    console.log("new message");
+
+    //if (interlocutor_id == "") {
+    if (!is_interlocutor) {
+      this.addNewDialog(interlocutor_id);
+    }
+
     this.moveDialog(interlocutor_id);
   }
 
