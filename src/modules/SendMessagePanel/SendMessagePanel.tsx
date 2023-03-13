@@ -21,7 +21,9 @@ const SendMessagePanel = (props: { target_user: string | null }) => {
       on_click={() => {
         if (!props.target_user)
           throw new Error("Cannot send a message with a null user value");
+        if (message == "") return;
         sendDialogMessage(store.user.id, props.target_user, message);
+        console.log(message);
         setMessage("");
         setClearMessage(true);
       }}
